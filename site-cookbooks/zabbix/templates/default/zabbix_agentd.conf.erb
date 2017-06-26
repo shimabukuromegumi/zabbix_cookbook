@@ -1,0 +1,11 @@
+PidFile=/var/run/zabbix/zabbix_agentd.pid
+LogFile=/var/log/zabbix/zabbix_agentd.log
+LogFileSize=0
+EnableRemoteCommands=1
+Server=zabbix-server
+ServerActive=zabbix-server
+HostnameItem=system.hostname
+HostMetadata=base
+Timeout=30
+AllowRoot=1
+Include=/usr/lib/Zabbix/scripts/userparameters/*.conf

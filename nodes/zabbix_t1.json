@@ -1,0 +1,9 @@
+{
+  "run_list": [
+    "recipe[zabbix]",
+    "recipe[zabbix::agent]"
+  ],
+  "automatic": {
+    "ipaddress": "zabbix_t1"
+  }
+}
