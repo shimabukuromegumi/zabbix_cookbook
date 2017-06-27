@@ -1,3 +1,24 @@
+# Download Directory
+directory "/usr/local/src/zabbix" do
+  owner 'root'
+  group 'root'
+  mode  '0755'
+  recursive true
+end
+
+# Zabbix archive download
+remote_file "/usr/local/src/zabbix/zabbix-release-2.4-1.el6.noarch.rpm" do
+  source "http://repo.zabbix.com/zabbix/2.4/rhel/6/x86_64/zabbix-release-2.4-1.el6.noarch.rpm"
+  action :create_if_missing
+end
+
+bash 'install_zabbix-release' do
+  user 'root'
+  code <<-EOH
+    rpm -ivh /usr/local/src/zabbix/zabbix-release-2.4-1.el6.noarch.rpm
+  EOH
+  not_if 'test `rpm -qa zabbix-release | wc -l` -ge 1'
+end
 
 %w{zabbix zabbix-agent zabbix-sender}.each do |pkg|
   package pkg do
